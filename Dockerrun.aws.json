@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "node-server",
+      "image": "954636261957.dkr.ecr.eu-west-1.amazonaws.com/exersice-docker-image:latest",
+      "essential": true,
+      "memory": 128
+    }
+  ]
+}
