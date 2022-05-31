@@ -14,11 +14,11 @@ test:
     - echo "Testing the app"
 
 build:
-  stage: run
+  stage: build
   script:
     - echo "Building the app"
 
 deploy:
-  stage: run
+  stage: deploy
   script:
     - echo "Deploying the app"
