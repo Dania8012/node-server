@@ -5,3 +5,6 @@ stages:
   - ms1-test
   - ms1-build
   - ms1-deploy
+  - ms2-test
+  - ms2-build
+  - ms2-deploy
