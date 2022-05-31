@@ -1,0 +1,29 @@
+
+ms1-test:
+  stage: ms1-test
+  rules:
+    - changes:
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  script:
+    - echo "Testing the app"
+
+ms1-build:
+  stage: ms1-build
+  rules:
+    - changes:
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  needs: ["ms1-test"]
+  script:
+    - echo "Building the app"
+
+ms1-deploy:
+  stage: ms1-deploy
+  rules:
+    - changes:
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  needs: ["ms1-build"]
+  script:
+    - echo "Deploying the app"
