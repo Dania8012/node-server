@@ -30,14 +30,17 @@ ms1-build:
   script:
     - echo "Building the app1"
 
-# ms1-build-demo:
-#   stage: build-demo
-  # only:
-  #   refs:
-  #     - demo
-#   needs: ["ms1-test-demo"]
-#   script:
-#     - echo "Building the app1 for demo"
+ms1-build-demo:
+  stage: build-demo
+  rules:
+    - if: $CI_COMMIT_BRANCH == "demo" 
+      when: always 
+      changes: 
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  needs: ["ms1-test-demo"]
+  script:
+    - echo "Building the app1 for demo"
 
 ms1-deploy:
   stage: deploy
@@ -49,10 +52,13 @@ ms1-deploy:
   script:
     - echo "Deploying the app1"
 
-# ms1-deploy-demo:
-#   stage: deploy-demo
-#   only:
-#     refs:
-#       - demo
-#   script:
-#     - echo "Deploying the app1"
+ms1-deploy-demo:
+  stage: deploy-demo
+  rules:
+    - if: $CI_COMMIT_BRANCH == "demo" 
+      when: always 
+      changes: 
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  script:
+    - echo "Deploying the app1"
