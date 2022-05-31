@@ -62,5 +62,6 @@ ms1-deploy-demo:
       changes: 
         - microservice1/packages.txt
         - microservice1/server.txt
+  needs: ["ms1-build-demo"]
   script:
     - echo "Deploying the app1"
