@@ -8,6 +8,17 @@ ms1-test:
   script:
     - echo "Testing the app1"
 
+
+ms1-test-demo:
+  stage: test-demo
+  rules:
+    - changes:
+        - microservice1/packages.txt
+        - microservice1/server.txt
+  script:
+    - echo "Testing the app1 demo"
+
+
 ms1-build:
   stage: build
   rules:
@@ -23,6 +34,7 @@ ms1-build-demo:
   only:
     refs:
       - demo
+  needs: ["ms1-test-demo"]
   script:
     - echo "Building the app1 for demo"
 
