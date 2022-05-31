@@ -41,12 +41,13 @@ ms1-deploy:
     - echo "Deploying the app1"
 
 ms1-deploy-demo:
+  stage: deploy-demo
   only:
     - if: $CI_COMMIT_BRANCH == 'demo'
   rules:
     - changes:
         - microservice1/packages.txt
         - microservice1/server.txt
-  needs: ["ms1-build"]
+  needs: ["ms1-build-demo"]
   script:
     - echo "Deploying the app1"
