@@ -28,6 +28,7 @@ ms1-build:
       changes:
         - microservice1/packages.txt
         - microservice1/server.txt
+  needs: ["ms1-test"]
   script:
     - echo "Building the app1"
 
