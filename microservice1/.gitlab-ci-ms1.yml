@@ -25,7 +25,6 @@ ms1-build:
     - changes:
         - microservice1/packages.txt
         - microservice1/server.txt
-  needs: ["ms1-test"]
   script:
     - echo "Building the app1"
 
@@ -53,6 +52,5 @@ ms1-deploy-demo:
   only:
     refs:
       - demo
-  needs: ["ms1-build-demo"]
   script:
     - echo "Deploying the app1"
