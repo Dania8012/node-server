@@ -17,6 +17,7 @@ ms1-test-demo:
     - changes:
         - microservice1/packages.txt
         - microservice1/server.txt
+      when: always
   script:
     - echo "Testing the app1 demo"
 
