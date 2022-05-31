@@ -2,28 +2,67 @@
 ms2-test:
   stage: test
   rules:
-    - changes:
+    - if: $CI_COMMIT_BRANCH != "demo"  
+      changes:
         - microservice2/packages.txt
         - microservice2/server.txt
   script:
     - echo "Testing the app2"
 
+
+ms2-test-demo:
+  stage: test-demo
+  rules:
+    - if: $CI_COMMIT_BRANCH == "demo"  
+      changes: 
+        - microservice2/packages.txt
+        - microservice2/server.txt
+  script:
+    - echo "Testing the app2 demo"
+
+
 ms2-build:
   stage: build
   rules:
-    - changes:
+    - if: $CI_COMMIT_BRANCH != "demo" 
+      changes:
         - microservice2/packages.txt
         - microservice2/server.txt
   needs: ["ms2-test"]
   script:
     - echo "Building the app2"
 
+ms2-build-demo:
+  stage: build-demo
+  rules:
+    - if: $CI_COMMIT_BRANCH == "demo" 
+      when: always 
+      changes: 
+        - microservice2/packages.txt
+        - microservice2/server.txt
+  needs: ["ms2-test-demo"]
+  script:
+    - echo "Building the app2 for demo"
+
 ms2-deploy:
   stage: deploy
   rules:
-    - changes:
+    - if: $CI_COMMIT_BRANCH != "demo" 
+      changes:
         - microservice2/packages.txt
         - microservice2/server.txt
   needs: ["ms2-build"]
+  script:
+    - echo "Deploying the app2"
+
+ms2-deploy-demo:
+  stage: deploy-demo
+  rules:
+    - if: $CI_COMMIT_BRANCH == "demo" 
+      when: always 
+      changes: 
+        - microservice2/packages.txt
+        - microservice2/server.txt
+  needs: ["ms2-build-demo"]
   script:
     - echo "Deploying the app2"
