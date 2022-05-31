@@ -11,6 +11,9 @@ ms1-test:
 
 ms1-test-demo:
   stage: test-demo
+  only:
+    refs:
+      - demo
   rules:
     - changes:
         - microservice1/packages.txt
@@ -30,9 +33,9 @@ ms1-build:
 
 # ms1-build-demo:
 #   stage: build-demo
-#   only:
-#     refs:
-#       - demo
+  # only:
+  #   refs:
+  #     - demo
 #   needs: ["ms1-test-demo"]
 #   script:
 #     - echo "Building the app1 for demo"
