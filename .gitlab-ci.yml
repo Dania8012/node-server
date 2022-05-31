@@ -1,24 +1,24 @@
 image: node:latest
 
 stages:
+  - test
   - build
-  - run
+  - deploy
 
 # Job's name
-first-job:
+test:
   # Define stage
-  stage: build
+  stage: test
   # What to run on the job.
   script:
-    - npm install
-  artifacts:
-    paths:
-      - node_modules
+    - echo "Testing the app"
 
-second-job:
+build:
   stage: run
   script:
-    - npm run test
-  artifacts:
-    paths:
-      - node_modules/
+    - echo "Building the app"
+
+deploy:
+  stage: run
+  script:
+    - echo "Deploying the app"
