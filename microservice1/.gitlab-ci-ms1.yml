@@ -12,8 +12,7 @@ ms1-test:
 ms1-test-demo:
   stage: test-demo
   rules:
-    - if: $CI_COMMIT_BRANCH == "demo" 
-      when: always 
+    - if: $CI_COMMIT_BRANCH == "demo"  
       changes: 
         - microservice1/packages.txt
         - microservice1/server.txt
