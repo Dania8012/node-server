@@ -4,6 +4,7 @@ include:
 
 stages:
   - test
+  - ms1-test-demo
   - build
   - build-demo
   - deploy
