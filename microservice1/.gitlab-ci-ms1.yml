@@ -28,14 +28,14 @@ ms1-build:
   script:
     - echo "Building the app1"
 
-ms1-build-demo:
-  stage: build-demo
-  only:
-    refs:
-      - demo
-  needs: ["ms1-test-demo"]
-  script:
-    - echo "Building the app1 for demo"
+# ms1-build-demo:
+#   stage: build-demo
+#   only:
+#     refs:
+#       - demo
+#   needs: ["ms1-test-demo"]
+#   script:
+#     - echo "Building the app1 for demo"
 
 ms1-deploy:
   stage: deploy
@@ -47,10 +47,10 @@ ms1-deploy:
   script:
     - echo "Deploying the app1"
 
-ms1-deploy-demo:
-  stage: deploy-demo
-  only:
-    refs:
-      - demo
-  script:
-    - echo "Deploying the app1"
+# ms1-deploy-demo:
+#   stage: deploy-demo
+#   only:
+#     refs:
+#       - demo
+#   script:
+#     - echo "Deploying the app1"
