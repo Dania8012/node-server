@@ -21,7 +21,7 @@ ms1-build:
 ms1-build-demo:
   stage: build-demo
   only:
-    - demo
+    - if: $CI_COMMIT_BRANCH == 'demo'
   rules:
     - changes:
         - microservice1/packages.txt
@@ -42,7 +42,7 @@ ms1-deploy:
 
 ms1-deploy-demo:
   only:
-    - demo
+    - if: $CI_COMMIT_BRANCH == 'demo'
   rules:
     - changes:
         - microservice1/packages.txt
