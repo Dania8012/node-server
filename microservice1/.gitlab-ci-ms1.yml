@@ -23,7 +23,6 @@ ms1-build-demo:
   only:
     refs:
       - demo
-  needs: ["ms1-test"]
   script:
     - echo "Building the app1 for demo"
 
