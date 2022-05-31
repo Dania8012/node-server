@@ -1,6 +1,6 @@
 
 ms2-test:
-  stage: ms2-test
+  stage: test
   rules:
     - changes:
         - microservice2/packages.txt
@@ -9,7 +9,7 @@ ms2-test:
     - echo "Testing the app"
 
 ms2-build:
-  stage: ms2-build
+  stage: build
   rules:
     - changes:
         - microservice2/packages.txt
@@ -19,7 +19,7 @@ ms2-build:
     - echo "Building the app"
 
 ms2-deploy:
-  stage: ms2-deploy
+  stage: deploy
   rules:
     - changes:
         - microservice2/packages.txt
