@@ -5,20 +5,19 @@ stages:
   - build
   - deploy
 
-# Job's name
 test:
-  # Define stage
   stage: test
-  # What to run on the job.
   script:
     - echo "Testing the app"
 
 build:
   stage: build
+  needs: ["test"]
   script:
     - echo "Building the app"
 
 deploy:
   stage: deploy
+  needs: ["build"]
   script:
     - echo "Deploying the app"
