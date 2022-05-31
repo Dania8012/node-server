@@ -20,8 +20,9 @@ ms1-build:
 
 ms1-build-demo:
   stage: build-demo
+  only:
+    - demo
   rules:
-    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^demo/
     - changes:
         - microservice1/packages.txt
         - microservice1/server.txt
@@ -40,9 +41,9 @@ ms1-deploy:
     - echo "Deploying the app1"
 
 ms1-deploy-demo:
-  stage: deploy-demo
+  only:
+    - demo
   rules:
-    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^demo/
     - changes:
         - microservice1/packages.txt
         - microservice1/server.txt
