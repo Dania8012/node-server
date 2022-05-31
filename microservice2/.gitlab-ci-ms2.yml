@@ -6,7 +6,7 @@ ms2-test:
         - microservice2/packages.txt
         - microservice2/server.txt
   script:
-    - echo "Testing the app"
+    - echo "Testing the app2"
 
 ms2-build:
   stage: build
@@ -16,7 +16,7 @@ ms2-build:
         - microservice2/server.txt
   needs: ["ms2-test"]
   script:
-    - echo "Building the app"
+    - echo "Building the app2"
 
 ms2-deploy:
   stage: deploy
@@ -26,4 +26,4 @@ ms2-deploy:
         - microservice2/server.txt
   needs: ["ms2-build"]
   script:
-    - echo "Deploying the app"
+    - echo "Deploying the app2"

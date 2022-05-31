@@ -3,9 +3,6 @@ include:
   - local: 'microservice2/.gitlab-ci-ms2.yml'
 
 stages:
-  - ms1-test
-  - ms1-build
-  - ms1-deploy
-  - ms2-test
-  - ms2-build
-  - ms2-deploy
+  - test
+  - build
+  - deploy
