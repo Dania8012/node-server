@@ -1,6 +1,6 @@
 include:
-  - local: 'microservice1/.gitlab-ci-ms1.yml'
-  - local: 'microservice2/.gitlab-ci-ms2.yml'
+  - local: 'services/atlas/.gitlab-ci-ms1.yml'
+  - local: 'services/director/.gitlab-ci-ms2.yml'
 
 stages:
   - test

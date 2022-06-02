@@ -1,68 +1,68 @@
 
-ms1-test:
+atlas-test:
   stage: test
   rules:
     - if: $CI_COMMIT_BRANCH != "demo"  
       changes:
-        - microservice1/packages.txt
-        - microservice1/server.txt
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
   script:
     - echo "Testing the app1"
 
 
-ms1-test-demo:
+atlas-test-demo:
   stage: test-demo
   rules:
     - if: $CI_COMMIT_BRANCH == "demo"  
       changes: 
-        - microservice1/packages.txt
-        - microservice1/server.txt
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
   script:
     - echo "Testing the app1 demo"
 
 
-ms1-build:
+atlas-build:
   stage: build
   rules:
     - if: $CI_COMMIT_BRANCH != "demo" 
       changes:
-        - microservice1/packages.txt
-        - microservice1/server.txt
-  needs: ["ms1-test"]
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
+  needs: ["atlas-test"]
   script:
     - echo "Building the app1"
 
-ms1-build-demo:
+atlas-build-demo:
   stage: build-demo
   rules:
     - if: $CI_COMMIT_BRANCH == "demo" 
       when: always 
       changes: 
-        - microservice1/packages.txt
-        - microservice1/server.txt
-  needs: ["ms1-test-demo"]
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
+  needs: ["atlas-test-demo"]
   script:
     - echo "Building the app1 for demo"
 
-ms1-deploy:
+atlas-deploy:
   stage: deploy
   rules:
     - if: $CI_COMMIT_BRANCH != "demo" 
       changes:
-        - microservice1/packages.txt
-        - microservice1/server.txt
-  needs: ["ms1-build"]
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
+  needs: ["atlas-build"]
   script:
     - echo "Deploying the app1"
 
-ms1-deploy-demo:
+atlas-deploy-demo:
   stage: deploy-demo
   rules:
     - if: $CI_COMMIT_BRANCH == "demo" 
       when: always 
       changes: 
-        - microservice1/packages.txt
-        - microservice1/server.txt
-  needs: ["ms1-build-demo"]
+        - services/atlas/packages.txt
+        - services/atlas/server.txt
+  needs: ["atlas-build-demo"]
   script:
     - echo "Deploying the app1"
