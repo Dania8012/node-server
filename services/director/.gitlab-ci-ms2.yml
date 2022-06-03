@@ -6,6 +6,8 @@ director-test:
       changes:
         - services/director/packages.txt
         - services/director/server.txt
+  environment:
+    name: dev
   script:
     - echo "Testing the app2"
 
@@ -17,6 +19,8 @@ director-test-demo:
       changes: 
         - services/director/packages.txt
         - services/director/server.txt
+  environment:
+    name: demo
   script:
     - echo "Testing the app2 demo"
 
@@ -29,6 +33,8 @@ director-build:
         - services/director/packages.txt
         - services/director/server.txt
   needs: ["director-test"]
+  environment:
+    name: dev
   script:
     - echo "Building the app2"
 
@@ -41,6 +47,8 @@ director-build-demo:
         - services/director/packages.txt
         - services/director/server.txt
   needs: ["director-test-demo"]
+  environment:
+    name: demo
   script:
     - echo "Building the app2 for demo"
 
@@ -52,6 +60,8 @@ director-deploy:
         - services/director/packages.txt
         - services/director/server.txt
   needs: ["director-build"]
+  environment:
+    name: dev
   script:
     - echo "Deploying the app2"
 
@@ -64,5 +74,7 @@ director-deploy-demo:
         - services/director/packages.txt
         - services/director/server.txt
   needs: ["director-build-demo"]
+  environment:
+    name: demo
   script:
     - echo "Deploying the app2"

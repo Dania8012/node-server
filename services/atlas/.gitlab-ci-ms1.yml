@@ -6,6 +6,8 @@ atlas-test:
       changes:
         - services/atlas/packages.txt
         - services/atlas/server.txt
+  environment:
+    name: dev
   script:
     - echo "Testing the app1"
 
@@ -17,6 +19,8 @@ atlas-test-demo:
       changes: 
         - services/atlas/packages.txt
         - services/atlas/server.txt
+  environment:
+    name: demo
   script:
     - echo "Testing the app1 demo"
 
@@ -29,6 +33,8 @@ atlas-build:
         - services/atlas/packages.txt
         - services/atlas/server.txt
   needs: ["atlas-test"]
+  environment:
+    name: dev
   script:
     - echo "Building the app1"
 
@@ -41,6 +47,8 @@ atlas-build-demo:
         - services/atlas/packages.txt
         - services/atlas/server.txt
   needs: ["atlas-test-demo"]
+  environment:
+    name: demo
   script:
     - echo "Building the app1 for demo"
 
@@ -52,6 +60,8 @@ atlas-deploy:
         - services/atlas/packages.txt
         - services/atlas/server.txt
   needs: ["atlas-build"]
+  environment:
+    name: dev
   script:
     - echo "Deploying the app1"
 
@@ -64,5 +74,7 @@ atlas-deploy-demo:
         - services/atlas/packages.txt
         - services/atlas/server.txt
   needs: ["atlas-build-demo"]
+  environment:
+    name: demo
   script:
     - echo "Deploying the app1"
