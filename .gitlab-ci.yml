@@ -14,5 +14,5 @@ publish:
     - docker info
     - docker --version
   script:
-    - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest .
-    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest
+    - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest .
+    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
