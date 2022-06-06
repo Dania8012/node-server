@@ -7,12 +7,12 @@ publish:
   before_script:
     - apk add --no-cache curl jq python3 py3-pip
     - pip install awscli
+    - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
+    - aws configure set aws_secret_access_key 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
     - aws ecr get-login-password | docker login --username AWS --password-stdin 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros
     - aws --version
     - docker info
     - docker --version
   script:
-    - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
-    - aws configure set aws_secret_access_key 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
     - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest .
     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest
