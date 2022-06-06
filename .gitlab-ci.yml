@@ -7,6 +7,7 @@ build:
   services:
     - docker
   script:
+    - docker images
     - pip3 install awscli
     - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
     - aws configure set aws_secret_access_key $JLdoqCypjtCLVia0hxAC+vbkRcw3bYa7mD9Hnx0c
