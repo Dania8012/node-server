@@ -1,34 +1,16 @@
-# image: docker:latest  
-# stages:
-#   - build
-# services:
-#   - docker:dind
-
-# build:
-#   stage: build
-#   image: 
-#     name: amazon/aws-cli
-#     entrypoint: [""]
-#   before_script:
-#     - amazon-linux-extras install docker
-#     - aws --version
-#     - docker --version
-#   script:
-#     - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
-#     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-#     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
-
 publish:
+  stage: build
   image: 
-    # name: docker
-    # entrypoint: [""]
+    name: docker:latest
   services:
-    - docker:dind
+    - docker:19-dind
   before_script:
-    # - amazon-linux-extras install docker
-    # - aws --version
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - aws ecr get-login-password | docker login --username AWS --password-stdin 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros
+    - aws --version
+    - docker info
     - docker --version
   script:
-    - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
-    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
+    - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest .
+    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros/latest
