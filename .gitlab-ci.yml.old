@@ -1,0 +1,11 @@
+include:
+  - local: 'services/atlas/.gitlab-ci-ms1.yml'
+  - local: 'services/director/.gitlab-ci-ms2.yml'
+
+stages:
+  - test
+  - test-demo
+  - build
+  - build-demo
+  - deploy
+  - deploy-demo

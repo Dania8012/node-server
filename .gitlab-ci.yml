@@ -1,11 +1,14 @@
-include:
-  - local: 'services/atlas/.gitlab-ci-ms1.yml'
-  - local: 'services/director/.gitlab-ci-ms2.yml'
-
 stages:
-  - test
-  - test-demo
   - build
-  - build-demo
-  - deploy
-  - deploy-demo
+
+build:
+  stage: build
+  image: python:3.7.4-alpine3.10
+  script:
+    - pip3 install awscli
+    - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
+    - aws configure set aws_secret_access_key $JLdoqCypjtCLVia0hxAC+vbkRcw3bYa7mD9Hnx0c
+    - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's;https://;;g')
+    - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
+    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
+    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
