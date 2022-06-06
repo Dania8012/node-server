@@ -4,6 +4,8 @@ stages:
 build:
   stage: build
   image: python:3.7.4-alpine3.10
+  services:
+    - docker
   script:
     - pip3 install awscli
     - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
