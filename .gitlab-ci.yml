@@ -2,6 +2,7 @@ stages:
   - build
 
 build:
+  stage: build
   image: 
     name: amazon/aws-cli
     entrypoint: [""]
