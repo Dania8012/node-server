@@ -2,16 +2,16 @@ stages:
   - build
 
 build:
-  stage: build
-  image: python:3.7.4-alpine3.10
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
   services:
-    - docker
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
   script:
-    - docker images
-    - pip3 install awscli
-    - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
-    - aws configure set aws_secret_access_key $JLdoqCypjtCLVia0hxAC+vbkRcw3bYa7mD9Hnx0c
-    - eval $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's;https://;;g')
     - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
-    - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
