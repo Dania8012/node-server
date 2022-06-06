@@ -20,8 +20,8 @@
 
 publish:
   image: 
-    name: docker
-    entrypoint: [""]
+    # name: docker
+    # entrypoint: [""]
   services:
     - docker:dind
   before_script:
@@ -29,8 +29,6 @@ publish:
     # - aws --version
     - docker --version
   script:
-    - apt update
-    - apt install aws-cli -y 
     - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
