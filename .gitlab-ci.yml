@@ -9,7 +9,7 @@ publish:
     - pip install awscli
     - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
     - aws configure set aws_secret_access_key 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
-    - aws configure set aws_region eu-west-1
+    - aws configure set default.region eu-west-1
     - aws ecr get-login-password | docker login --username AWS --password-stdin 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros
     - aws --version
     - docker info
