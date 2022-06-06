@@ -20,8 +20,7 @@
 
 publish:
   image: 
-    name: amazon/aws-cli
-    entrypoint: [""]
+    name: docker:latest
   services:
     - docker:dind
   before_script:
