@@ -17,3 +17,15 @@ publish:
   script:
     - docker build -t 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA .
     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
+
+
+EKS:
+  stage: deploy
+  script:
+    - apt update -y
+    - apt install -y curl python3-pip
+    - pip3 install awscli typing
+    - pip3 install --upgrade botocore==1.21.57
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
+    - export AWS_DEFAULT_REGION=$AWS_REGION
