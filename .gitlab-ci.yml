@@ -57,7 +57,7 @@ deploy:
 
 
 rollback:
-  stage: rollback
+  stage: manual rollback
   needs: ["deploy"]
   rules:
     - when: manual
