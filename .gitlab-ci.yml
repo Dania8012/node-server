@@ -38,7 +38,7 @@ build:
 
 deploy:
   stage: deploy
-  needs: ["publish"]
+  needs: ["build"]
   script:
     - apt update -y
     - apt install -y curl python3-pip
