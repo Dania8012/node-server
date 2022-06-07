@@ -1,5 +1,17 @@
-publish:
+stages:
+  - test
+  - build
+  - deploy
+  - rollback
+
+test:
+  stage: test
+  script:
+    - echo "Running unit tests"
+
+build:
   stage: build
+  needs: ["test"]
   image: 
     name: docker:latest
   services:
@@ -45,7 +57,7 @@ deploy:
 
 
 rollback:
-  stage: deploy
+  stage: rollback
   needs: ["deploy"]
   rules:
     - when: manual
