@@ -40,4 +40,4 @@ EKS:
     - kubectl version --client
     - aws sts get-caller-identity
     - aws eks --region eu-west-1 update-kubeconfig --name CofeApp
-    - kubectl get nodes
+    - kubectl set image deployment/sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
