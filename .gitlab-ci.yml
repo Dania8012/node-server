@@ -15,6 +15,7 @@ publish:
     - echo $LAST_IMAGE_TAG
     - MANIFEST=$(aws ecr batch-get-image --repository-name sibros --image-ids imageTag=$LAST_IMAGE_TAG --output json | jq --raw-output --join-output '.images[0].imageManifest')
     - echo $MANIFEST
+    - aws ecr put-image --repository-name sibros --image-tag rollback --image-manifest "$MANIFEST" 
     - aws --version
     - docker info
     - docker --version
