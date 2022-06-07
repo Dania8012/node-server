@@ -24,8 +24,9 @@ publish:
     - docker push 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
 
 
-EKS:
+deploy:
   stage: deploy
+  needs: ["publish"]
   script:
     - apt update -y
     - apt install -y curl python3-pip
@@ -43,8 +44,9 @@ EKS:
     - kubectl set image deployment/sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
 
 
-Rollback:
+rollback:
   stage: deploy
+  needs: ["deploy"]
   rules:
     - when: manual
   script:
