@@ -54,7 +54,7 @@ deploy:
     - kubectl version --client
     - aws sts get-caller-identity
     - aws eks --region eu-west-1 update-kubeconfig --name CofeApp
-    - kubectl set image deployment/sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA
+    - if [ -n "$CI_COMMIT_TAG" ]; then kubectl set image deployment/sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_TAG; else kubectl set image deployment/sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA; fi
 
 
 rollback:
