@@ -20,7 +20,7 @@ test:
     - export AWS_SECRET_ACCESS_KEY=JLdoqCypjtCLVia0hxAC+vbkRcw3bYa7mD9Hnx0c
     - export AWS_DEFAULT_REGION=eu-west-1
     - aws sts get-caller-identity
-    - aws eks --region $AWS_REGION update-kubeconfig --name CofeApp
+    - aws eks --region eu-west-1 update-kubeconfig --name CofeApp
     - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
     - chmod +x ./kubectl
     - mv ./kubectl /usr/local/bin/kubectl
