@@ -16,7 +16,7 @@ build:
     name: docker:latest
   services:
     - docker:19-dind
-  before_script:
+  before_script: 
     - apk add --no-cache curl jq python3 py3-pip
     - pip install awscli
     - aws configure set aws_access_key_id AKIA54RGBLJCQ3MJ2SV6
