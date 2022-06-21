@@ -15,13 +15,6 @@ spec:
       containers:
         - name: sibros
           image: 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
-          startupProbe:
-            httpGet:
-              path: /
-              port: 80
-            periodSeconds: 2
-            initialDelaySeconds: 30
-            failureThreshold: 90
           ports:
             - containerPort: 80
   strategy:
