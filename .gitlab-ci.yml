@@ -15,7 +15,7 @@ test:
     - pip3 install --upgrade botocore==1.21.57
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
-    - sudo ./aws/install
+    - ./aws/install
     - export AWS_ACCESS_KEY_ID=AKIA54RGBLJCQ3MJ2SV6
     - export AWS_SECRET_ACCESS_KEY=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
     - export AWS_DEFAULT_REGION=eu-west-1
