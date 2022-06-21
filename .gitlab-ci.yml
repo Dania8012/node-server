@@ -13,15 +13,15 @@ test:
     - apt install -y curl python3-pip
     - pip3 install awscli typing
     - pip3 install --upgrade botocore==1.21.57
-    # - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_PROD
-    # - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY_PROD
-    # - export AWS_DEFAULT_REGION=$AWS_REGION
-    # - aws sts get-caller-identity
-    # - aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
-    # - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
-    # - chmod +x ./kubectl
-    # - mv ./kubectl /usr/local/bin/kubectl
-    # - kubectl version --client
+    - export AWS_ACCESS_KEY_ID=AKIA54RGBLJCQ3MJ2SV6
+    - export AWS_SECRET_ACCESS_KEY=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
+    - export AWS_DEFAULT_REGION=eu-west-1
+    - aws sts get-caller-identity
+    - aws eks --region $AWS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl
+    - mv ./kubectl /usr/local/bin/kubectl
+    - kubectl version --client
     # - ARGO_PWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo)
     # - ARGO_DOMAIN=$ARGOCD_DOMAIN_PROD
     # - curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
