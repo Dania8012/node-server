@@ -7,7 +7,7 @@ stages:
 test:
   stage: test
   script:
-    - echo $CI_COMMIT_TAG
+    - if [ -n "$CI_COMMIT_TAG" ]; then echo "with tag"; else echo "no tag"; fi
     - echo "Running unit tests"
 
 build:
