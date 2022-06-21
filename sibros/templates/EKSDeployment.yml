@@ -1,28 +1,3 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: sibros
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: sibros
-#   strategy:
-#     rollingUpdate:
-#       maxSurge: 3
-#       maxUnavailable: 2
-#     type: RollingUpdate
-#   template:
-#     metadata:
-#       labels:
-#         app: sibros
-#     spec:
-#       containers:
-#       - name: sibros
-#         image: 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
-#         ports:
-#         - containerPort: 80
-
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
@@ -40,6 +15,13 @@ spec:
       containers:
         - name: sibros
           image: 954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:latest
+          startupProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 2
+            initialDelaySeconds: 30
+            failureThreshold: 90
           ports:
             - containerPort: 80
   strategy:
