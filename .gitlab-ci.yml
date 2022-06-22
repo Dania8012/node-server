@@ -67,6 +67,7 @@ deploy:
     - mv ./kubectl-argo-rollouts-linux-amd64 /usr/local/bin/kubectl-argo-rollouts
     - kubectl get pods
     - if [ -n "$CI_COMMIT_TAG" ]; then kubectl argo rollouts set image sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_TAG; else kubectl argo rollouts set image sibros sibros=954636261957.dkr.ecr.eu-west-1.amazonaws.com/sibros:$CI_COMMIT_SHORT_SHA; fi
+    - argocd app sync sibrostest
 
 rollback:
   stage: rollback
