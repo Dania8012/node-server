@@ -7,6 +7,11 @@ app.get("/", (req, res) => {
   res.send("Hello World! v0.09");
 });
 
+app.get("/test", (req, res) => {
+  console.log("Sending new logs");
+  res.send("Test response");
+});
+
 app.listen(port, () => {
   console.log(`App is listening at http://localhost:${port}`);
 });
