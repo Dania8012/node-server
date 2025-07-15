@@ -6,23 +6,18 @@ on:
       - master  # Adjust as needed
 
 jobs:
-  zip_and_upload:
+  S3PackageUpload:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Zip and upload to S3
-        uses: NotCoffee418/s3-zip-upload@v1.4
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
         with:
           role-to-assume: arn:aws:iam::390402557022:role/S3GithubRole
           role-session-name: samplerolesession
-        env:
-          # AWS_SECRET_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_MODE: ZIP
-          SOURCE_PATH: .                  # zips the whole repo (excluding .git by default)
-          DEST_FILE: source_code.zip
+          aws-region: ${{ secrets.AWS_REGION }}
+      # Upload a file to AWS s3
+      - name: Copy index.html to s3
+        run: |
+          aws s3 cp ./index.js s3://${{ secrets.BUCKET_NAME }}/
