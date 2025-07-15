@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # Adjust as needed
+
 permissions:
   id-token: write
   contents: read
@@ -14,13 +15,19 @@ jobs:
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::390402557022:role/S3GithubRole
           role-session-name: samplerolesession
           aws-region: me-central-1
-      # Upload a file to AWS s3
-      - name: Copy index.html to s3
+
+      - name: Zip repository
         run: |
-          aws s3 cp ./index.js s3://testcoderepo801/
+          # Exclude the .git history to keep the zip clean
+          zip -r source_code.zip . -x "*.git*"
+
+      - name: Upload zip to S3
+        run: |
+          aws s3 cp source_code.zip s3://testcoderepo801/source_code.zip
