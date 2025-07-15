@@ -19,7 +19,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::390402557022:role/S3GithubRole
           role-session-name: samplerolesession
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: me-central-1
       # Upload a file to AWS s3
       - name: Copy index.html to s3
         run: |
