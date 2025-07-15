@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master  # Adjust as needed
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   S3PackageUpload:
