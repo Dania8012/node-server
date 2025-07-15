@@ -21,8 +21,8 @@ jobs:
         env:
           # AWS_SECRET_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           # AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-          # AWS_REGION: ${{ secrets.AWS_REGION }}
+          BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_MODE: ZIP
           SOURCE_PATH: .                  # zips the whole repo (excluding .git by default)
           DEST_FILE: source_code.zip
