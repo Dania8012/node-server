@@ -15,11 +15,14 @@ jobs:
 
       - name: Zip and upload to S3
         uses: NotCoffee418/s3-zip-upload@v1.4
+        with:
+          role-to-assume: arn:aws:iam::390402557022:role/S3GithubRole
+          role-session-name: samplerolesession
         env:
-          AWS_SECRET_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+          # AWS_SECRET_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          # BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          # AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_MODE: ZIP
           SOURCE_PATH: .                  # zips the whole repo (excluding .git by default)
           DEST_FILE: source_code.zip
