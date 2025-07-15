@@ -12,6 +12,12 @@ jobs:
   S3PackageUpload:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump OIDC token
+        run: |
+          echo "=== token claims ==="
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" \
+          | jq -r .value | base64 --decode | jq
       - name: Git clone the repository
         uses: actions/checkout@v4
       - name: configure aws credentials
